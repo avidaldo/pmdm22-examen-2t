@@ -1,0 +1,53 @@
+package com.example.pmdm22_examen_2t.ui.ej02
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pmdm22_examen_2t.R
+
+
+@Composable
+fun Ej02Screen() {
+    val viewModel: CountersListViewModel = viewModel()
+
+    Scaffold(
+        topBar = {
+            TopAppBar {
+                Row(modifier = Modifier.padding(horizontal = 20.dp)) {
+                    Text(
+                        text = stringResource(R.string.title), fontSize = 20.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = stringResource(R.string.global, viewModel.getGlobalCount())
+                    )
+                }
+            }
+        }) { paddingValues ->
+
+        Column(
+            Modifier.padding(paddingValues)
+        ) {
+            AddBlock(addCounter = { viewModel.add(Counter(it)) })
+            CountersList(
+                list = viewModel.list,
+                onIncrement = { viewModel.increment(it) },
+                onDecrement = { viewModel.decrement(it) },
+                onRemoveItem = { viewModel.remove(it) },
+            )
+
+        }
+
+    }
+
+}
+

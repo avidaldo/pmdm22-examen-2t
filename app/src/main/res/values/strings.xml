@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">pmdm22-examen-2t</string>
+    <string name="close">Cerrar</string>
+    <string name="title">Contadores</string>
+    <string name="add">Añadir</string>
+    <string name="decrement">Decrementar</string>
+    <string name="increment">Incrementar</string>
+    <string name="num_counters">Número de contadores:</string>
+    <string name="show">Mostrar</string>
+    <string name="global">Global: %1$s</string>
+</resources>
