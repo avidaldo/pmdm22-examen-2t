@@ -20,6 +20,8 @@ fun CountersList(
         verticalArrangement = Arrangement.Center,
         modifier = modifier.verticalScroll(rememberScrollState())
     ) {
+/*        for (index in list.indices)
+            CounterBlock(list[index], { onIncrement(index) }, { onDecrement(index) })*/
         //for ((index, count) in list.withIndex()) {
         list.forEachIndexed { index, count ->
             CounterBlock(count, { onIncrement(index) }, { onDecrement(index) })
