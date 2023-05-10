@@ -20,22 +20,26 @@ class CountersListViewModel : ViewModel() {
         item.count--
     }
 
-    fun add(item: Counter) {
-        _list.add(item)
-    }
+    private fun add(item: Counter) = _list.add(item)
+
+    fun add(counterName: String) =
+        if (_list.none { counterName == it.name })
+            add(Counter(counterName))
+        else false
+
 
     fun getGlobalCount() =
         //_list.map { it.count }.fold(0) { acc, counter -> acc + counter }
         _list.sumOf { it.count }
 
-/*    fun getGlobalCountImperativo() : Int {
-        var acc = 0
-        for (item: Counter in _list) {
-            acc += item.count
-        }
-        return acc
-    }*/
 
+    /*    fun getGlobalCountImperativo() : Int {
+            var acc = 0
+            for (item: Counter in _list) {
+                acc += item.count
+            }
+            return acc
+        }*/
 
 
 }

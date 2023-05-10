@@ -1,5 +1,6 @@
 package com.example.pmdm22_examen_2t.ui.ej02
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -8,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -18,6 +20,8 @@ import com.example.pmdm22_examen_2t.R
 @Composable
 fun Ej02Screen() {
     val viewModel: CountersListViewModel = viewModel()
+
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -37,7 +41,10 @@ fun Ej02Screen() {
         Column(
             Modifier.padding(paddingValues)
         ) {
-            AddBlock(addCounter = { viewModel.add(Counter(it)) })
+            AddBlock(addCounter = {
+                if (!viewModel.add(it))
+                    Toast.makeText(context, "Nombre ya existente", Toast.LENGTH_SHORT).show()
+            })
             CountersList(
                 list = viewModel.list,
                 onIncrement = { viewModel.increment(it) },
